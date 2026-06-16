@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rahul Kumar — Showcase</title>
+<title>Sarthak Gupta — Showcase</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
@@ -76,7 +76,6 @@
     position: relative;
     flex: 1;
     overflow: hidden;
-    /* Soft linear blend mask to signal horizontal content overflow to thumbs */
     -webkit-mask-image: linear-gradient(to right, #000 82%, transparent 100%);
     mask-image: linear-gradient(to right, #000 82%, transparent 100%);
   }
@@ -554,19 +553,16 @@
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <header>
   <div class="header-inner">
-    <div class="logo">rk<span>.</span>dev</div>
+    <div class="logo">sg<span>.</span>dev</div>
     
     <nav>
-      <!-- PRO NAVIGATION TABS -->
       <div class="pro-nav" id="nav-container-pro">
         <button class="nav-tab active" onclick="showPage('pro-overview', this)">Overview</button>
         <button class="nav-tab" onclick="showPage('pro-projects', this)">Projects</button>
       </div>
 
-      <!-- PERSONAL NAVIGATION TABS -->
       <div class="personal-nav" id="nav-container-personal">
         <button class="nav-tab" onclick="showPage('personal-about', this)">About Me</button>
         <button class="nav-tab" onclick="showPage('personal-philosophy', this)">Philosophy</button>
@@ -586,40 +582,36 @@
   </div>
 </header>
 
-<!-- ── SHARED CONTAINER ── -->
 <div class="page-container" style="max-width: 960px; margin: 0 auto; padding: 40px 24px 0;">
   <div class="hero" style="margin-bottom: 0;">
-    <div class="avatar">RK</div>
+    <div class="avatar">SG</div>
     <div class="hero-text">
-      <h1>Rahul Kumar</h1>
-      <div class="handle">@rahulkumar-dev</div>
-      <div class="tagline pro-nav">Backend engineer building reliable fintech systems at Standard Chartered.</div>
-      <div class="tagline personal-nav">Engineer by day. Building in public. Occasionally behind a camera.</div>
+      <h1>Sarthak Gupta</h1>
+      <div class="handle">@sarthakgupta3</div>
+      <div class="tagline pro-nav">Software Development Engineer at Standard Chartered GBS. Specialized in backend architectures and distributed workflows.</div>
+      <div class="tagline personal-nav">Co-Founder & CPO. Open source developer. Explorer of sequence mining models.</div>
     </div>
   </div>
 </div>
 
-<!-- ==================== PROFESSIONAL INTERFACES ==================== -->
-
-<!-- 1. PRO OVERVIEW PAGE -->
 <div class="page active" id="page-pro-overview">
   <div class="stat-cards-wrapper pro-stats">
-    <a class="stat-card" href="https://substack.com" target="_blank" rel="noopener">
-      <div class="stat-icon">✍️</div>
-      <span class="stat-value">Writing</span>
-      <div class="stat-label">Substack</div>
-    </a>
-    <a class="stat-card" href="https://linkedin.com/in/rahulkumar" target="_blank" rel="noopener">
+    <a class="stat-card" href="https://linkedin.com/in/sarthakgupta3" target="_blank" rel="noopener">
       <div class="stat-icon">💼</div>
       <span class="stat-value">LinkedIn</span>
       <div class="stat-label">Professional</div>
     </a>
-    <a class="stat-card" href="https://github.com/rahulkumar-dev" target="_blank" rel="noopener">
+    <a class="stat-card" href="https://github.com" target="_blank" rel="noopener">
       <div class="stat-icon">🐙</div>
       <span class="stat-value">GitHub</span>
-      <div class="stat-label">222 contributions</div>
+      <div class="stat-label">Open Source</div>
     </a>
-    <a class="stat-card" href="mailto:rahul@example.com">
+    <a class="stat-card" href="#" onclick="return false;">
+      <div class="stat-icon">🎓</div>
+      <span class="stat-value">9.12 CGPI</span>
+      <div class="stat-label">NIT Dual Degree</div>
+    </a>
+    <a class="stat-card" href="mailto:sarthakgupta3661@gmail.com">
       <div class="stat-icon">📬</div>
       <span class="stat-value">Email</span>
       <div class="stat-label">Get in touch</div>
@@ -629,244 +621,198 @@
   <div class="readme">
     <div class="readme-header"><div class="dot"></div>README.md</div>
     <div class="readme-body">
-      <h2>Hey, I'm Rahul</h2>
-      <div class="sub">Backend engineer building reliable fintech infrastructure</div>
+      <h2>Hey, I'm Sarthak</h2>
+      <div class="sub">Software Development Engineer bridging real-time distributed ecosystems</div>
       <p>
-        I work on payment infrastructure and transaction systems at Standard Chartered.
-        I build side projects to go deeper on topics my day job doesn't cover —
-        and document everything publicly so others can learn from it too.
+        I specialize in web and backend development, building performance-tuned processing engines at Standard Chartered GBS. I engineer reliable transaction boundaries and high-throughput systems using Java, Spring Boot, and event-driven architectures.
       </p>
 
       <div class="pills">
         <span class="pill">Java / Spring Boot</span>
-        <span class="pill">Node.js</span>
-        <span class="pill">Fintech</span>
-        <span class="pill">Distributed Systems</span>
+        <span class="pill">Apache Kafka</span>
+        <span class="pill">Microservices Architecture</span>
+        <span class="pill">AWS SQS</span>
+        <span class="pill">PostgreSQL</span>
+        <span class="pill">Docker</span>
       </div>
 
       <div class="readme-section">
-        <h3>What I'm working on</h3>
+        <h3>What I've delivered at Standard Chartered GBS</h3>
         <ul>
-          <li>Expense categorizer — auto-tags bank transactions using Spring Boot + ML</li>
-          <li>Writing about distributed systems patterns I use at work</li>
-          <li>Contributing to open source Spring ecosystem</li>
+          <li>Built a high-throughput Kafka consumer service in Spring Boot to bridge core CRM modules with the bank's CDC pipeline, enabling real-time, event-driven data synchronization across downstream systems.</li>
+          <li>Automated legacy workflows to reduce manual effort by 90%, converting a manual process into a background task via Java and Spring Boot.</li>
+          <li>Optimized release management lifecycle by designing a unified coordination tool that eliminated cross-team communication overhead and improved process transparency.</li>
+          <li>Delivered 50+ custom CRM functionalities using C# and JavaScript, significantly enhancing the platform's business logic and internal user experience.</li>
         </ul>
       </div>
 
       <div class="readme-section">
-        <h3>Recent writing</h3>
+        <h3>Core Competencies</h3>
         <ul>
-          <li><a href="#">How we handled race conditions in concurrent payment processing</a></li>
-          <li><a href="#">Why I stopped using @Transactional everywhere (and what I do instead)</a></li>
+          <li>Data Structures & Algorithms & System Design (HLD/LLD)</li>
+          <li>Spring Security, React, Redux, Node.js, Express.js, REST APIs</li>
+          <li>PostgreSQL, MySQL, MongoDB, Redis</li>
+          <li>AWS Certified Developer Associate, Git, CI/CD pipelines</li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="now-card">
-    <div class="now-header">Now — June 2026</div>
+    <div class="now-header">Now — Core Production Focus</div>
     <div class="now-items">
-      <div class="now-item">Deep in async processing patterns for high-throughput payment queues</div>
-      <div class="now-item">Writing a series on idempotency in distributed fintech systems</div>
+      <div class="now-item">Maintaining event-driven messaging topologies using Spring Boot and Apache Kafka</div>
+      <div class="now-item">Streamlining bank CDC pipeline integrations across decoupled microservices</div>
     </div>
   </div>
 </div>
 
-<!-- 2. PRO PROJECTS PAGE -->
 <div class="page" id="page-pro-projects">
   <div class="section-header">
-    <div class="section-title">Projects</div>
+    <div class="section-title">Projects & Milestones</div>
   </div>
-  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Filter by skill to find what matters to you.</p>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Filter by skill tags extracted from core system builds.</p>
 
   <div class="filter-bar" id="filterBar">
     <button class="filter-tag active" onclick="filterProjects('all', this)">All</button>
     <button class="filter-tag" onclick="filterProjects('spring-boot', this)">Spring Boot</button>
-    <button class="filter-tag" onclick="filterProjects('java', this)">Java</button>
     <button class="filter-tag" onclick="filterProjects('nodejs', this)">Node.js</button>
-    <button class="filter-tag" onclick="filterProjects('ml', this)">ML</button>
-    <button class="filter-tag" onclick="filterProjects('fintech', this)">Fintech</button>
-    <button class="filter-tag" onclick="filterProjects('system-design', this)">System Design</button>
+    <button class="filter-tag" onclick="filterProjects('react', this)">React</button>
+    <button class="filter-tag" onclick="filterProjects('microservices', this)">Microservices</button>
+    <button class="filter-tag" onclick="filterProjects('cloud-infra', this)">Cloud / Architecture</button>
   </div>
 
   <div class="project-grid" id="projectGrid">
-    <div class="project-card" data-tags="java spring-boot ml fintech">
-      <div class="project-name">expense-categorizer</div>
-      <div class="project-desc">Auto-categorizes bank transactions using Spring Boot + OpenAI API. Handles 10k txns/min with async processing and idempotent writes.</div>
+    <div class="project-card" data-tags="spring-boot react cloud-infra">
+      <div class="project-name">standard-chartered-etl</div>
+      <div class="project-desc">Developed an automated ETL pipeline as a Technology Intern to migrate large-scale datasets to PostgreSQL, integrated with a React dashboard and RESTful APIs for real-time monitoring.</div>
       <div class="project-tags">
-        <span class="project-tag">Java</span>
         <span class="project-tag">Spring Boot</span>
-        <span class="project-tag">ML</span>
-        <span class="project-tag">Fintech</span>
+        <span class="project-tag">PostgreSQL</span>
+        <span class="project-tag">React</span>
+        <span class="project-tag">REST APIs</span>
       </div>
       <div class="project-meta">
         <span><span class="lang-dot" style="background:#b07219;"></span><span class="lang-label">Java</span></span>
-        <span class="star-count">34</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/rahulkumar-dev/expense-categorizer" class="project-link" target="_blank">⎋ GitHub</a>
-        <a href="#" class="project-link">↗ Live demo</a>
+        <span class="star-count">Internship</span>
       </div>
     </div>
 
-    <div class="project-card" data-tags="nodejs fintech">
-      <div class="project-name">fx-rate-notifier</div>
-      <div class="project-desc">Currency rate alerts via WhatsApp, Node.js + Twilio. Set thresholds, get notified. Polls 12 currency pairs every 5 minutes.</div>
+    <div class="project-card" data-tags="microservices cloud-infra">
+      <div class="project-name">multicloud-wallet-pass-generation</div>
+      <div class="project-desc">Implemented a system for 15,000+ users utilizing an asynchronous message-driven architecture to eliminate processing bottlenecks and ensure 99.9% uptime via horizontal scaling. Containerized 10+ microservices using Docker.</div>
       <div class="project-tags">
-        <span class="project-tag">Node.js</span>
-        <span class="project-tag">Fintech</span>
+        <span class="project-tag">Microservices</span>
+        <span class="project-tag">Docker</span>
+        <span class="project-tag">Asynchronous</span>
+        <span class="project-tag">Multicloud</span>
       </div>
       <div class="project-meta">
         <span><span class="lang-dot" style="background:#f1e05a;"></span><span class="lang-label">JavaScript</span></span>
-        <span class="star-count">21</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/rahulkumar-dev/fx-rate-notifier" class="project-link" target="_blank">⎋ GitHub</a>
+        <span class="star-count">Enrich Hosting</span>
       </div>
     </div>
 
-    <div class="project-card" data-tags="java spring-boot system-design">
-      <div class="project-name">spring-patterns</div>
-      <div class="project-desc">Real-world Spring Boot patterns from production. Anti-patterns included. Covers saga pattern, outbox, circuit breaker, and idempotency.</div>
+    <div class="project-card" data-tags="react cloud-infra">
+      <div class="project-name">drawpi-no-code-platform</div>
+      <div class="project-desc">Co-founded and architected a no-code platform that automated RESTful API deployment, enabling users to launch production-ready endpoints in under 2 minutes. Developed interface using React.</div>
       <div class="project-tags">
-        <span class="project-tag">Java</span>
-        <span class="project-tag">Spring Boot</span>
-        <span class="project-tag">System Design</span>
+        <span class="project-tag">React</span>
+        <span class="project-tag">System Architecture</span>
+        <span class="project-tag">API Automation</span>
+        <span class="project-tag">Product Strategy</span>
       </div>
       <div class="project-meta">
-        <span><span class="lang-dot" style="background:#b07219;"></span><span class="lang-label">Java</span></span>
-        <span class="star-count">55</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/rahulkumar-dev/spring-patterns" class="project-link" target="_blank">⎋ GitHub</a>
-        <a href="#" class="project-link">↗ Docs site</a>
+        <span><span class="lang-dot" style="background:#f1e05a;"></span><span class="lang-label">ReactJS</span></span>
+        <span class="star-count">Co-Founder & CPO</span>
       </div>
     </div>
 
-    <div class="project-card" data-tags="fintech system-design">
-      <div class="project-name">fintech-interview-prep</div>
-      <div class="project-desc">System design questions specific to payments, banking, and transactions. 40+ questions with detailed breakdowns and trade-off analysis.</div>
-      <div class="project-tags">
-        <span class="project-tag">Fintech</span>
-        <span class="project-tag">System Design</span>
-      </div>
-      <div class="project-meta">
-        <span><span class="lang-dot" style="background:#e44b23;"></span><span class="lang-label">Markdown</span></span>
-        <span class="star-count">112</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/rahulkumar-dev/fintech-interview-prep" class="project-link" target="_blank">⎋ GitHub</a>
-      </div>
-    </div>
-
-    <div class="project-card" data-tags="java spring-boot fintech">
-      <div class="project-name">payment-gateway-sim</div>
-      <div class="project-desc">A simulated payment gateway for testing distributed transaction flows. Includes failure injection, retry logic, and dead letter queues.</div>
-      <div class="project-tags">
-        <span class="project-tag">Java</span>
-        <span class="project-tag">Spring Boot</span>
-        <span class="project-tag">Fintech</span>
-      </div>
-      <div class="project-meta">
-        <span><span class="lang-dot" style="background:#b07219;"></span><span class="lang-label">Java</span></span>
-        <span class="star-count">28</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/rahulkumar-dev" class="project-link" target="_blank">⎋ GitHub</a>
-      </div>
-    </div>
-
-    <div class="project-card" data-tags="nodejs ml">
-      <div class="project-name">receipt-ocr-api</div>
-      <div class="project-desc">REST API that extracts structured data from receipt images using OCR + LLM parsing. Returns merchant, amount, date, and line items as JSON.</div>
+    <div class="project-card" data-tags="nodejs">
+      <div class="project-name">taskbot-nlp-whatsapp</div>
+      <div class="project-desc">Built an NLP-powered WhatsApp bot used by 50+ users to automate tasks through natural language commands, enabling features like contextual action triggers, group utilities, and conversational workflows.</div>
       <div class="project-tags">
         <span class="project-tag">Node.js</span>
-        <span class="project-tag">ML</span>
+        <span class="project-tag">MongoDB</span>
+        <span class="project-tag">NLP</span>
+        <span class="project-tag">Open Source</span>
       </div>
       <div class="project-meta">
         <span><span class="lang-dot" style="background:#f1e05a;"></span><span class="lang-label">JavaScript</span></span>
-        <span class="star-count">17</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/rahulkumar-dev" class="project-link" target="_blank">⎋ GitHub</a>
-        <a href="#" class="project-link">↗ Live demo</a>
+        <span class="star-count">Personal Project</span>
       </div>
     </div>
   </div>
 </div>
 
 
-<!-- ==================== PERSONAL INTERFACES ==================== -->
-
-<!-- 1. PERSONAL ABOUT ME -->
 <div class="page" id="page-personal-about">
   <div class="stat-cards-wrapper personal-stats">
-    <a class="stat-card" href="https://substack.com" target="_blank" rel="noopener">
-      <div class="stat-icon">✍️</div>
-      <span class="stat-value">Writing</span>
-      <div class="stat-label">Substack</div>
+    <a class="stat-card" href="https://linkedin.com/in/sarthakgupta3" target="_blank" rel="noopener">
+      <div class="stat-icon">💼</div>
+      <span class="stat-value">Connect</span>
+      <div class="stat-label">LinkedIn</div>
     </a>
-    <a class="stat-card" href="https://twitter.com" target="_blank" rel="noopener">
-      <div class="stat-icon">🐦</div>
-      <span class="stat-value">Twitter</span>
-      <div class="stat-label">Building in public</div>
+    <a class="stat-card" href="#" onclick="return false;">
+      <div class="stat-icon">⚡</div>
+      <span class="stat-value">Co-Founder</span>
+      <div class="stat-label">DrawPI, Inc.</div>
     </a>
     <a class="stat-card" href="#" onclick="showPage('personal-photography', document.getElementById('nav-container-personal').querySelectorAll('.nav-tab')[2]); return false;">
       <div class="stat-icon">📷</div>
       <span class="stat-value">Photos</span>
-      <div class="stat-label">My photography</div>
+      <div class="stat-label">My gallery</div>
     </a>
-    <a class="stat-card" href="https://github.com/rahulkumar-dev" target="_blank" rel="noopener">
-      <div class="stat-icon">🐙</div>
-      <span class="stat-value">GitHub</span>
-      <div class="stat-label">Open source</div>
+    <a class="stat-card" href="mailto:sarthakgupta3661@gmail.com">
+      <div class="stat-icon">📬</div>
+      <span class="stat-value">Ping</span>
+      <div class="stat-label">Email Me</div>
     </a>
   </div>
 
   <div class="readme">
     <div class="readme-header"><div class="dot"></div>README.md</div>
     <div class="readme-body">
-      <h2>Hey, I'm Rahul</h2>
-      <div class="sub">Engineer · builder · occasional photographer</div>
+      <h2>Hey, I'm Sarthak</h2>
+      <div class="sub">Engineer · Builder · Product Thinker</div>
       <p>
-        Day job is fintech infrastructure. Side life is building things in public,
-        writing about what I learn, and pointing a camera at whatever catches my eye.
-        I believe in making the work visible.
+        By day, I work on deep payment infrastructure. On the flip side, I am deeply passionate about bootstrap engineering, open source projects, product ownership, and teaching API architectures. I love making systems visible from the ground up.
       </p>
 
       <div class="pills">
-        <span class="pill">Building in public</span>
-        <span class="pill">Photography</span>
-        <span class="pill">Side projects</span>
+        <span class="pill">No-Code Ecosystems</span>
+        <span class="pill">NLP Systems</span>
+        <span class="pill">API Workshops</span>
+        <span class="pill">Data Optimization</span>
       </div>
 
       <div class="readme-section">
-        <h3>What I'm working on</h3>
+        <h3>Community & Leadership Milestones</h3>
         <ul>
-          <li>Building a photography portfolio site from scratch</li>
-          <li>Experimenting with microservices design paths</li>
+          <li>Spearheaded the "Developer Connect" campaign, conducting API development workshops for 50+ students to foster community growth and technical skill-sharing.</li>
+          <li>Managed a cross-functional team of 10+ members at DrawPI, Inc., overseeing the end-to-end product roadmap from initial design to successful feature delivery.</li>
+          <li>Designed core UX interfaces for non-technical founders, making highly complex cloud deployment systems fully democratic.</li>
         </ul>
       </div>
 
       <div class="readme-section">
-        <h3>Recent writing</h3>
+        <h3>Academic Publications</h3>
         <ul>
-          <li><a href="#">What street photography taught me about debugging</a></li>
+          <li><strong>High Utility Sequence Mining using Cuckoo Search Algorithm</strong> (IET Conference Proceedings, 2023) — Proposed an evolutionary approach to pattern discovery that mitigates combinatorial explosion.</li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="now-card">
-    <div class="now-header">Now — June 2026</div>
+    <div class="now-header">Now — Current Research Interests</div>
     <div class="now-items">
-      <div class="now-item">Shooting street photography on weekends — Leica M6, Portra 400</div>
-      <div class="now-item">Reading: A Philosophy of Software Design — John Ousterhout</div>
+      <div class="now-item">Exploring meta-heuristic algorithms and combinatorial optimizations in database models</div>
+      <div class="now-item">Sailing through asynchronous NLP conversational flows and chat-based automation patterns</div>
     </div>
   </div>
 </div>
 
-<!-- 2. PERSONAL PHILOSOPHY & BOOKS -->
 <div class="page" id="page-personal-philosophy">
   <div class="section-header">
     <div class="section-title">Things I believe</div>
@@ -874,60 +820,51 @@
   <div class="philosophy-grid">
     <div class="belief-card">
       <div class="belief-num">01</div>
-      <p>Simplicity is not the absence of effort. It is the result of it. The cleanest systems take the most rework.</p>
+      <p>Asynchronous architectures are non-negotiable for web scaling. Bottlenecks should be eliminated ahead of user complaints, not as a reactive measure.</p>
     </div>
     <div class="belief-card">
       <div class="belief-num">02</div>
-      <p>Build in public. Showing the work, including the failed attempts, is more valuable than polished outcomes.</p>
+      <p>No-code platforms aren't abstractions that eliminate software engineering; they change standard interface parameters so non-technical builders can manifest micro-systems rapidly.</p>
     </div>
     <div class="belief-card">
       <div class="belief-num">03</div>
-      <p>Speed and reliability are not tradeoffs. Most systems that are slow are also unreliable. Fix the foundations.</p>
+      <p>Data migration pipeline health requires monitoring loops. Raw migration script sets are entirely insufficient without live dashboard metrics tracking validation rates.</p>
     </div>
     <div class="belief-card">
       <div class="belief-num">04</div>
-      <p>Photography and engineering share the same core skill: seeing what's actually there, not what you expect to be.</p>
+      <p>Sequence mining algorithms offer real answers to optimization challenges. Traditional database architectures often break down where meta-heuristics scale with ease.</p>
     </div>
   </div>
 
   <hr class="section-divider" />
   
   <div class="section-header">
-    <div class="section-title">Books that shaped me</div>
+    <div class="section-title">Research Foundations & Reference Material</div>
   </div>
   <div class="books-list">
     <div class="book-item">
       <div class="book-spine" style="background:#1a2f1a;">📗</div>
       <div class="book-meta">
-        <div class="book-title">Designing Data-Intensive Applications</div>
-        <div class="book-author">Martin Kleppmann</div>
-        <div class="book-note">Changed how I think about every system I build. The chapter on consistency models alone is worth the price.</div>
+        <div class="book-title">High Utility Sequence Mining Using Cuckoo Search</div>
+        <div class="book-author">Sarthak Gupta (IET, 2023)</div>
+        <div class="book-note">My published paper introducing an evolutionary optimization technique to significantly reduce database pattern discovery memory footprints.</div>
       </div>
     </div>
     <div class="book-item">
       <div class="book-spine" style="background:#1a1a2f;">📘</div>
       <div class="book-meta">
-        <div class="book-title">A Philosophy of Software Design</div>
-        <div class="book-author">John Ousterhout</div>
-        <div class="book-note">The best argument I've read for why complexity is the root of all software evil — and what to do about it.</div>
-      </div>
-    </div>
-    <div class="book-item">
-      <div class="book-spine" style="background:#2f1a1a;">📕</div>
-      <div class="book-meta">
-        <div class="book-title">The Pragmatic Programmer</div>
-        <div class="book-author">Hunt & Thomas</div>
-        <div class="book-note">Probably the most re-read book on my shelf. Different chapters hit differently at different stages of your career.</div>
+        <div class="book-title">System Design & Middleware Strategies</div>
+        <div class="book-author">Core References</div>
+        <div class="book-note">Deep conceptual frameworks revolving around high-throughput Kafka topology execution, horizontal microservices container clusters, and distributed transactions.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 3. PERSONAL PHOTOGRAPHY -->
 <div class="page" id="page-personal-photography">
   <div class="photo-hero">
-    <h2>Photography</h2>
-    <p>Street, travel, and the occasional lucky moment. Shot mostly on film.</p>
+    <h2>Photography & Visual Logs</h2>
+    <p>Capturing alternative moments outside the code editor. Travel log logs and perspective captures.</p>
     <a href="#YOUR_PHOTOGRAPHY_LINK" class="btn-primary" target="_blank" rel="noopener">
       View full gallery ↗
     </a>
