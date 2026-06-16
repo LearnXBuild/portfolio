@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rahul Kumar — Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #21262d;
+    --border-muted: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --text-subtle: #6e7681;
+    --accent: #58a6ff;
+    --accent-glow: rgba(88,166,255,0.12);
+    --green: #3fb950;
+    --tag-bg: #1f3a4f;
+    --tag-text: #79c0ff;
+  }
+  body.personal-mode {
+    --accent: #e3b341;
+    --accent-glow: rgba(227,179,65,0.10);
+    --tag-bg: #3a2e0f;
+    --tag-text: #f0c050;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: opacity 0.15s; }
+  a:hover { opacity: 0.8; }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    gap: 32px;
+  }
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+  }
+  .logo span { color: var(--accent); }
+
+  nav { display: flex; gap: 4px; flex: 1; }
+  .nav-tab {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: color 0.15s, background 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+  .nav-tab:hover { color: var(--text); background: var(--border); }
+  .nav-tab.active { color: var(--text); background: var(--surface); }
+
+  /* DYNAMIC TABS DISPLAY BY MODE */
+  .pro-nav, .personal-nav { display: none; gap: 4px; }
+  body:not(.personal-mode) .pro-nav { display: flex; }
+  body.personal-mode .personal-nav { display: flex; }
+
+  /* MODE TOGGLE */
+  .mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+  .mode-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-subtle);
+    letter-spacing: 0.02em;
+    width: 24px;
+    text-align: right;
+  }
+  .toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    cursor: pointer;
+  }
+  .toggle-switch input { display: none; }
+  .toggle-track {
+    position: absolute;
+    inset: 0;
+    background: var(--border-muted);
+    border-radius: 12px;
+    transition: background 0.3s;
+  }
+  .toggle-switch input:checked + .toggle-track { background: var(--accent); }
+  .toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(20px); }
+
+  /* MODE COMMAND LINE */
+  .mode-command {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  .mode-command.visible { opacity: 1; }
+
+  /* ── LAYOUT ── */
+  .page { display: none; max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+  .page.active { display: block; }
+
+  /* ── HERO / README ── */
+  .hero { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 32px; }
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--green) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 22px;
+    color: #fff;
+    flex-shrink: 0;
+    border: 2px solid var(--border-muted);
+  }
+  .hero-text h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 2px;
+  }
+  .hero-text .handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .hero-text .tagline {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 480px;
+  }
+
+  /* STAT CARDS - STRICT MAX 4 IN A ROW CONTAINER */
+  .stat-cards-wrapper { display: none; margin-bottom: 32px; }
+  body:not(.personal-mode) .pro-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  body.personal-mode .personal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+  }
+  .stat-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    opacity: 1;
+  }
+  .stat-card .stat-icon { font-size: 18px; margin-bottom: 6px; }
+  .stat-card .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .stat-card .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* README BOX */
+  .readme {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .readme-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .readme-header .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .readme-body { padding: 24px; }
+  .readme-body h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .readme-body .sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .readme-body p { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
+
+  /* PILLS */
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .pill {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(88,166,255,0.2);
+    transition: background 0.2s;
+  }
+  body.personal-mode .pill { border-color: rgba(227,179,65,0.2); }
+
+  .readme-section { margin-bottom: 20px; }
+  .readme-section h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .readme-section ul { list-style: none; padding: 0; }
+  .readme-section li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .readme-section li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 5px;
+  }
+  .readme-section li a { font-size: 13px; }
+
+  /* ── PROJECTS PAGE ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* FILTER TAGS */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .filter-tag {
+    background: var(--surface);
+    border: 1px solid var(--border-muted);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+  .filter-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-tag.active {
+    background: var(--accent-glow);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* PROJECT GRID */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+  .project-card.hidden { display: none; }
+  .project-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .project-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; flex: 1; }
+  .project-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .lang-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+  }
+  .lang-label { font-size: 12px; color: var(--text-muted); }
+  .star-count { font-size: 12px; color: var(--text-muted); }
+  .star-count::before { content: '☆ '; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .project-tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 12px;
+  }
+  .project-links { display: flex; gap: 12px; margin-top: 4px; }
+  .project-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.15s;
+  }
+  .project-link:hover { color: var(--accent); opacity: 1; }
+
+  /* ── PHOTOGRAPHY PAGE ── */
+  .photo-hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 48px 32px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .photo-hero h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .photo-hero p { font-size: 14px; color: var(--text-muted); max-width: 380px; margin: 0 auto 20px; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 8px;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .photo-slot {
+    aspect-ratio: 1;
+    background: var(--surface);
+    border: 1px dashed var(--border-muted);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-subtle);
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .photo-slot:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* PHILOSOPHY SECTION */
+  .philosophy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
+  .belief-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .belief-card .belief-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+  .belief-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+  .books-list { display: flex; flex-direction: column; gap: 12px; }
+  .book-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .book-spine {
+    width: 36px;
+    min-height: 52px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .book-meta { flex: 1; }
+  .book-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .book-author { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+  .book-note { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+  /* NOW SECTION */
+  .now-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .now-card .now-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .now-card .now-header::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+  .now-items { display: flex; flex-direction: column; gap: 8px; }
+  .now-item { font-size: 13px; color: var(--text-muted); padding-left: 16px; position: relative; }
+  .now-item::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 10px; top: 3px; }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    body:not(.personal-mode) .pro-stats,
+    body.personal-mode .personal-stats { grid-template-columns: repeat(2, 1fr); }
+    .project-grid { grid-template-columns: 1fr; }
+    .philosophy-grid { grid-template-columns: 1fr; }
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero { flex-direction: column; gap: 12px; }
+    .header-inner { gap: 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="logo">rk<span>.</span>dev</div>
+    
+    <nav>
+      <!-- PRO NAVIGATION TABS -->
+      <div class="pro-nav" id="nav-container-pro">
+        <button class="nav-tab active" onclick="showPage('pro-overview', this)">Overview</button>
+        <button class="nav-tab" onclick="showPage('pro-projects', this)">Projects</button>
+      </div>
+
+      <!-- PERSONAL NAVIGATION TABS -->
+      <div class="personal-nav" id="nav-container-personal">
+        <button class="nav-tab" onclick="showPage('personal-about', this)">About Me</button>
+        <button class="nav-tab" onclick="showPage('personal-philosophy', this)">Philosophy & Books</button>
+        <button class="nav-tab" onclick="showPage('personal-photography', this)">Photography</button>
+      </div>
+    </nav>
+    
+    <div class="mode-toggle">
+      <span class="mode-command" id="modeCmd">$ mode --professional</span>
+      <label class="toggle-switch" title="Toggle Professional / Personal mode">
+        <input type="checkbox" id="modeToggle" onchange="toggleMode(this)" />
+        <div class="toggle-track"></div>
+        <div class="toggle-thumb"></div>
+      </label>
+      <span class="mode-label" id="modeLabel">PRO</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── COMMON SYSTEM HERO (CONTENT ADAPTS VIA CSS MODE) ── -->
+<div class="page-container" style="max-width: 960px; margin: 0 auto; padding: 40px 24px 0;">
+  <div class="hero" style="margin-bottom: 0;">
+    <div class="avatar">RK</div>
+    <div class="hero-text">
+      <h1>Rahul Kumar</h1>
+      <div class="handle">@rahulkumar-dev</div>
+      <div class="tagline pro-nav">Backend engineer building reliable fintech systems at Standard Chartered.</div>
+      <div class="tagline personal-nav">Engineer by day. Building in public. Occasionally behind a camera.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STRUCTURAL MODE SECTIONS ── -->
+
+<!-- ==================== PROFESSIONAL PAGES ==================== -->
+
+<!-- 1. PRO OVERVIEW PAGE -->
+<div class="page active" id="page-pro-overview">
+  <!-- STAT CARDS (PRO MODE - HORIZONTAL ROW) -->
+  <div class="stat-cards-wrapper pro-stats">
+    <a class="stat-card" href="https://substack.com" target="_blank" rel="noopener">
+      <div class="stat-icon">✍️</div>
+      <span class="stat-value">Writing</span>
+      <div class="stat-label">Substack</div>
+    </a>
+    <a class="stat-card" href="https://linkedin.com/in/rahulkumar" target="_blank" rel="noopener">
+      <div class="stat-icon">💼</div>
+      <span class="stat-value">LinkedIn</span>
+      <div class="stat-label">Professional</div>
+    </a>
+    <a class="stat-card" href="https://github.com/rahulkumar-dev" target="_blank" rel="noopener">
+      <div class="stat-icon">🐙</div>
+      <span class="stat-value">GitHub</span>
+      <div class="stat-label">222 contributions</div>
+    </a>
+    <a class="stat-card" href="mailto:rahul@example.com">
+      <div class="stat-icon">📬</div>
+      <span class="stat-value">Email</span>
+      <div class="stat-label">Get in touch</div>
+    </a>
+  </div>
+
+  <div class="readme">
+    <div class="readme-header"><div class="dot"></div>README.md</div>
+    <div class="readme-body">
+      <h2>Hey, I'm Rahul</h2>
+      <div class="sub">Backend engineer building reliable fintech infrastructure</div>
+      <p>
+        I work on payment infrastructure and transaction systems at Standard Chartered.
+        I build side projects to go deeper on topics my day job doesn't cover —
+        and document everything publicly so others can learn from it too.
+      </p>
+
+      <div class="pills">
+        <span class="pill">Java / Spring Boot</span>
+        <span class="pill">Node.js</span>
+        <span class="pill">Fintech</span>
+        <span class="pill">Distributed Systems</span>
+      </div>
+
+      <div class="readme-section">
+        <h3>What I'm working on</h3>
+        <ul>
+          <li>Expense categorizer — auto-tags bank transactions using Spring Boot + ML</li>
+          <li>Writing about distributed systems patterns I use at work</li>
+          <li>Contributing to open source Spring ecosystem</li>
+        </ul>
+      </div>
+
+      <div class="readme-section">
+        <h3>Recent writing</h3>
+        <ul>
+          <li><a href="#">How we handled race conditions in concurrent payment processing</a></li>
+          <li><a href="#">Why I stopped using @Transactional everywhere (and what I do instead)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="now-card">
+    <div class="now-header">Now — June 2026</div>
+    <div class="now-items">
+      <div class="now-item">Deep in async processing patterns for high-throughput payment queues</div>
+      <div class="now-item">Writing a series on idempotency in distributed fintech systems</div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. PRO PROJECTS PAGE -->
+<div class="page" id="page-pro-projects">
+  <div class="section-header">
+    <div class="section-title">Projects</div>
+  </div>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Filter by skill to find what matters to you.</p>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-tag active" onclick="filterProjects('all', this)">All</button>
+    <button class="filter-tag" onclick="filterProjects('spring-boot', this)">Spring Boot</button>
+    <button class="filter-tag" onclick="filterProjects('java', this)">Java</button>
+    <button class="filter-tag" onclick="filterProjects('nodejs', this)">Node.js</button>
+    <button class="filter-tag" onclick="filterProjects('ml', this)">ML</button>
+    <button class="filter-tag" onclick="filterProjects('fintech', this)">Fintech</button>
+    <button class="filter-tag" onclick="filterProjects('system-design', this)">System Design</button>
+  </div>
+
+  <div class="project-grid" id="projectGrid">
+    <div class="project-card" data-tags="java spring-boot ml fintech">
+      <div class="project-name">expense-categorizer</div>
+      <div class="project-desc">Auto-categorizes bank transactions using Spring Boot + OpenAI API. Handles 10k txns/min with async processing and idempotent writes.</div>
+      <div class="project-tags">
+        <span class="project-tag">Java</span>
+        <span class="project-tag">Spring Boot</span>
+        <span class="project-tag">ML</span>
+        <span class="project-tag">Fintech</span>
+      </div>
+      <div class="project-meta">
+        <span><span class="lang-dot" style="background:#b07219;"></span><span class="lang-label">Java</span></span>
+        <span class="star-count">34</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/rahulkumar-dev/expense-categorizer" class="project-link" target="_blank">⎋ GitHub</a>
+        <a href="#" class="project-link">↗ Live demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="nodejs fintech">
+      <div class="project-name">fx-rate-notifier</div>
+      <div class="project-desc">Currency rate alerts via WhatsApp, Node.js + Twilio. Set thresholds, get notified. Polls 12 currency pairs every 5 minutes.</div>
+      <div class="project-tags">
+        <span class="project-tag">Node.js</span>
+        <span class="project-tag">Fintech</span>
+      </div>
+      <div class="project-meta">
+        <span><span class="lang-dot" style="background:#f1e05a;"></span><span class="lang-label">JavaScript</span></span>
+        <span class="star-count">21</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/rahulkumar-dev/fx-rate-notifier" class="project-link" target="_blank">⎋ GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="java spring-boot system-design">
+      <div class="project-name">spring-patterns</div>
+      <div class="project-desc">Real-world Spring Boot patterns from production. Anti-patterns included. Covers saga pattern, outbox, circuit breaker, and idempotency.</div>
+      <div class="project-tags">
+        <span class="project-tag">Java</span>
+        <span class="project-tag">Spring Boot</span>
+        <span class="project-tag">System Design</span>
+      </div>
+      <div class="project-meta">
+        <span><span class="lang-dot" style="background:#b07219;"></span><span class="lang-label">Java</span></span>
+        <span class="star-count">55</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/rahulkumar-dev/spring-patterns" class="project-link" target="_blank">⎋ GitHub</a>
+        <a href="#" class="project-link">↗ Docs site</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="fintech system-design">
+      <div class="project-name">fintech-interview-prep</div>
+      <div class="project-desc">System design questions specific to payments, banking, and transactions. 40+ questions with detailed breakdowns and trade-off analysis.</div>
+      <div class="project-tags">
+        <span class="project-tag">Fintech</span>
+        <span class="project-tag">System Design</span>
+      </div>
+      <div class="project-meta">
+        <span><span class="lang-dot" style="background:#e44b23;"></span><span class="lang-label">Markdown</span></span>
+        <span class="star-count">112</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/rahulkumar-dev/fintech-interview-prep" class="project-link" target="_blank">⎋ GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="java spring-boot fintech">
+      <div class="project-name">payment-gateway-sim</div>
+      <div class="project-desc">A simulated payment gateway for testing distributed transaction flows. Includes failure injection, retry logic, and dead letter queues.</div>
+      <div class="project-tags">
+        <span class="project-tag">Java</span>
+        <span class="project-tag">Spring Boot</span>
+        <span class="project-tag">Fintech</span>
+      </div>
+      <div class="project-meta">
+        <span><span class="lang-dot" style="background:#b07219;"></span><span class="lang-label">Java</span></span>
+        <span class="star-count">28</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/rahulkumar-dev" class="project-link" target="_blank">⎋ GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="nodejs ml">
+      <div class="project-name">receipt-ocr-api</div>
+      <div class="project-desc">REST API that extracts structured data from receipt images using OCR + LLM parsing. Returns merchant, amount, date, and line items as JSON.</div>
+      <div class="project-tags">
+        <span class="project-tag">Node.js</span>
+        <span class="project-tag">ML</span>
+      </div>
+      <div class="project-meta">
+        <span><span class="lang-dot" style="background:#f1e05a;"></span><span class="lang-label">JavaScript</span></span>
+        <span class="star-count">17</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/rahulkumar-dev" class="project-link" target="_blank">⎋ GitHub</a>
+        <a href="#" class="project-link">↗ Live demo</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== PERSONAL PAGES ==================== -->
+
+<!-- 1. PERSONAL ABOUT ME -->
+<div class="page" id="page-personal-about">
+  <!-- STAT CARDS (PERSONAL MODE - HORIZONTAL ROW) -->
+  <div class="stat-cards-wrapper personal-stats">
+    <a class="stat-card" href="https://substack.com" target="_blank" rel="noopener">
+      <div class="stat-icon">✍️</div>
+      <span class="stat-value">Writing</span>
+      <div class="stat-label">Substack</div>
+    </a>
+    <a class="stat-card" href="https://twitter.com" target="_blank" rel="noopener">
+      <div class="stat-icon">🐦</div>
+      <span class="stat-value">Twitter</span>
+      <div class="stat-label">Building in public</div>
+    </a>
+    <a class="stat-card" href="#" onclick="showPage('personal-photography', document.getElementById('nav-container-personal').querySelectorAll('.nav-tab')[2]); return false;">
+      <div class="stat-icon">📷</div>
+      <span class="stat-value">Photos</span>
+      <div class="stat-label">My photography</div>
+    </a>
+    <a class="stat-card" href="https://github.com/rahulkumar-dev" target="_blank" rel="noopener">
+      <div class="stat-icon">🐙</div>
+      <span class="stat-value">GitHub</span>
+      <div class="stat-label">Open source</div>
+    </a>
+  </div>
+
+  <div class="readme">
+    <div class="readme-header"><div class="dot"></div>README.md</div>
+    <div class="readme-body">
+      <h2>Hey, I'm Rahul</h2>
+      <div class="sub">Engineer · builder · occasional photographer</div>
+      <p>
+        Day job is fintech infrastructure. Side life is building things in public,
+        writing about what I learn, and pointing a camera at whatever catches my eye.
+        I believe in making the work visible.
+      </p>
+
+      <div class="pills">
+        <span class="pill">Building in public</span>
+        <span class="pill">Photography</span>
+        <span class="pill">Side projects</span>
+      </div>
+
+      <div class="readme-section">
+        <h3>What I'm working on</h3>
+        <ul>
+          <li>Building a photography portfolio site from scratch</li>
+          <li>Experimenting with microservices design paths</li>
+        </ul>
+      </div>
+
+      <div class="readme-section">
+        <h3>Recent writing</h3>
+        <ul>
+          <li><a href="#">What street photography taught me about debugging</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="now-card">
+    <div class="now-header">Now — June 2026</div>
+    <div class="now-items">
+      <div class="now-item">Shooting street photography on weekends — Leica M6, Portra 400</div>
+      <div class="now-item">Reading: A Philosophy of Software Design — John Ousterhout</div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. PERSONAL PHILOSOPHY & BOOKS -->
+<div class="page" id="page-personal-philosophy">
+  <div class="section-header">
+    <div class="section-title">Things I believe</div>
+  </div>
+  <div class="philosophy-grid">
+    <div class="belief-card">
+      <div class="belief-num">01</div>
+      <p>Simplicity is not the absence of effort. It is the result of it. The cleanest systems take the most rework.</p>
+    </div>
+    <div class="belief-card">
+      <div class="belief-num">02</div>
+      <p>Build in public. Showing the work, including the failed attempts, is more valuable than polished outcomes.</p>
+    </div>
+    <div class="belief-card">
+      <div class="belief-num">03</div>
+      <p>Speed and reliability are not tradeoffs. Most systems that are slow are also unreliable. Fix the foundations.</p>
+    </div>
+    <div class="belief-card">
+      <div class="belief-num">04</div>
+      <p>Photography and engineering share the same core skill: seeing what's actually there, not what you expect to be.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+  
+  <div class="section-header">
+    <div class="section-title">Books that shaped me</div>
+  </div>
+  <div class="books-list">
+    <div class="book-item">
+      <div class="book-spine" style="background:#1a2f1a;">📗</div>
+      <div class="book-meta">
+        <div class="book-title">Designing Data-Intensive Applications</div>
+        <div class="book-author">Martin Kleppmann</div>
+        <div class="book-note">Changed how I think about every system I build. The chapter on consistency models alone is worth the price.</div>
+      </div>
+    </div>
+    <div class="book-item">
+      <div class="book-spine" style="background:#1a1a2f;">📘</div>
+      <div class="book-meta">
+        <div class="book-title">A Philosophy of Software Design</div>
+        <div class="book-author">John Ousterhout</div>
+        <div class="book-note">The best argument I've read for why complexity is the root of all software evil — and what to do about it.</div>
+      </div>
+    </div>
+    <div class="book-item">
+      <div class="book-spine" style="background:#2f1a1a;">📕</div>
+      <div class="book-meta">
+        <div class="book-title">The Pragmatic Programmer</div>
+        <div class="book-author">Hunt & Thomas</div>
+        <div class="book-note">Probably the most re-read book on my shelf. Different chapters hit differently at different stages of your career.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. PERSONAL PHOTOGRAPHY -->
+<div class="page" id="page-personal-photography">
+  <div class="photo-hero">
+    <h2>Photography</h2>
+    <p>Street, travel, and the occasional lucky moment. Shot mostly on film.</p>
+    <a href="#YOUR_PHOTOGRAPHY_LINK" class="btn-primary" target="_blank" rel="noopener">
+      View full gallery ↗
+    </a>
+  </div>
+
+  <p style="font-size:12px;color:var(--text-subtle);margin-bottom:16px;font-family:'JetBrains Mono',monospace;">// recent work — placeholders below</p>
+  <div class="photo-grid">
+    <div class="photo-slot">+ add photo</div>
+    <div class="photo-slot">+ add photo</div>
+    <div class="photo-slot">+ add photo</div>
+    <div class="photo-slot">+ add photo</div>
+    <div class="photo-slot">+ add photo</div>
+    <div class="photo-slot">+ add photo</div>
+  </div>
+</div>
+
+<script>
+  // ── PAGE SWITCHING ──
+  function showPage(id, btn) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Deactivate all matching navigation tabs across both sets
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    
+    // Show current requested page
+    const targetPage = document.getElementById('page-' + id);
+    if (targetPage) targetPage.classList.add('active');
+    
+    // Handle tab focus state
+    if (btn) {
+      btn.classList.add('active');
+    } else {
+      // Logic for fallbacks when switching core modes via standard toggles
+      const activeTab = document.querySelector(`.page.active`);
+    }
+  }
+
+  // ── MODE TOGGLE ──
+  const modeCmd = document.getElementById('modeCmd');
+  const modeLabel = document.getElementById('modeLabel');
+
+  function toggleMode(checkbox) {
+    const isPersonal = checkbox.checked;
+    document.body.classList.toggle('personal-mode', isPersonal);
+    modeLabel.textContent = isPersonal ? 'ME' : 'PRO';
+    modeCmd.textContent = isPersonal ? '$ mode --personal' : '$ mode --professional';
+    modeCmd.classList.add('visible');
+    
+    // Automatically swap page focus state safely to match the current interface scope
+    if (isPersonal) {
+      const personalTabs = document.getElementById('nav-container-personal').querySelectorAll('.nav-tab');
+      personalTabs.forEach(t => t.classList.remove('active'));
+      showPage('personal-about', personalTabs[0]);
+    } else {
+      const proTabs = document.getElementById('nav-container-pro').querySelectorAll('.nav-tab');
+      proTabs.forEach(t => t.classList.remove('active'));
+      showPage('pro-overview', proTabs[0]);
+    }
+
+    clearTimeout(modeCmd._timer);
+    modeCmd._timer = setTimeout(() => modeCmd.classList.remove('visible'), 1800);
+  }
+
+  // ── PROJECT FILTER ──
+  function filterProjects(tag, btn) {
+    document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(card => {
+      if (tag === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        const tags = card.dataset.tags || '';
+        card.classList.toggle('hidden', !tags.split(' ').includes(tag));
+      }
+    });
+  }
+</script>
+</body>
+</html>
