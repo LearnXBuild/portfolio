@@ -43,7 +43,7 @@
   a { color: var(--accent); text-decoration: none; transition: opacity 0.15s; }
   a:hover { opacity: 0.8; }
 
-  /* ── HEADER ── */
+  /* ── HEADER & RESILIENT NAVBAR ── */
   header {
     position: sticky;
     top: 0;
@@ -58,7 +58,7 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    height: 64px; /* Increased slightly for clear target breathing room */
+    height: 64px;
     gap: 24px;
   }
   .logo {
@@ -71,12 +71,38 @@
   }
   .logo span { color: var(--accent); }
 
-  nav { display: flex; gap: 4px; }
+  nav {
+    display: flex;
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    /* Soft linear blend mask to signal horizontal content overflow to thumbs */
+    -webkit-mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+  }
+
+  .pro-nav, .personal-nav {
+    display: none;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 32px;
+    width: 100%;
+  }
+  .pro-nav::-webkit-scrollbar, 
+  .personal-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  body:not(.personal-mode) .pro-nav { display: flex; }
+  body.personal-mode .personal-nav { display: flex; }
+
   .nav-tab {
     font-size: 13px;
     font-weight: 500;
     color: var(--text-muted);
-    padding: 8px 12px; /* Enhanced vertical sizing for thumb clicks */
+    padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
     border: none;
@@ -88,12 +114,7 @@
   .nav-tab:hover { color: var(--text); background: var(--border); }
   .nav-tab.active { color: var(--text); background: var(--surface); }
 
-  /* DYNAMIC TABS DISPLAY BY MODE */
-  .pro-nav, .personal-nav { display: none; gap: 4px; }
-  body:not(.personal-mode) .pro-nav { display: flex; }
-  body.personal-mode .personal-nav { display: flex; }
-
-  /* MODE TOGGLE SYSTEM - UPDATED FOR MOBILE SAFETY */
+  /* MODE TOGGLE INTERFACE */
   .mode-toggle {
     display: flex;
     align-items: center;
@@ -112,7 +133,7 @@
   }
   .toggle-switch {
     position: relative;
-    width: 48px; /* Slightly scaled up for physical interaction paths */
+    width: 48px;
     height: 26px;
     cursor: pointer;
     display: inline-block;
@@ -140,7 +161,6 @@
   }
   .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(22px); }
 
-  /* COMPACT CONTAINER DISPLAY FOR CONSOLE STRING */
   .mode-command {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -151,11 +171,10 @@
   }
   .mode-command.visible { opacity: 1; }
 
-  /* ── LAYOUT ── */
+  /* ── GRID LAYOUT SYSTEMS ── */
   .page { display: none; max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
   .page.active { display: block; }
 
-  /* ── HERO / README ── */
   .hero { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 32px; }
   .avatar {
     width: 72px;
@@ -191,7 +210,7 @@
     max-width: 480px;
   }
 
-  /* STAT CARDS - GRID PATTERNS */
+  /* STAT CARDS - ROW DISPATCHING */
   .stat-cards-wrapper { display: none; margin-bottom: 32px; }
   body:not(.personal-mode) .pro-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
   body.personal-mode .personal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -224,7 +243,7 @@
   }
   .stat-card .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
-  /* README BOX */
+  /* MARKDOWN ARCHITECTURE */
   .readme {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -257,7 +276,6 @@
   }
   .readme-body p { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
 
-  /* PILLS */
   .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
   .pill {
     background: var(--tag-bg);
@@ -297,7 +315,7 @@
   }
   .readme-section li a { font-size: 13px; }
 
-  /* ── PROJECTS SYSTEM ── */
+  /* PROJECTS CONTAINER MAPS */
   .section-header {
     display: flex;
     align-items: center;
@@ -387,7 +405,7 @@
   }
   .project-link:hover { color: var(--accent); opacity: 1; }
 
-  /* ── PHOTOGRAPHY SYSTEM ── */
+  /* PHOTOGRAPHY BLOCK MAPS */
   .photo-hero {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -438,7 +456,7 @@
   }
   .photo-slot:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* PHILOSOPHY STYLES */
+  /* BELIEFS & PHILOSOPHY LAYOUT */
   .philosophy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
   .belief-card {
     background: var(--surface);
@@ -480,7 +498,7 @@
   .book-author { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
   .book-note { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
 
-  /* NOW CARD BLOCK */
+  /* UPDATES FEED */
   .now-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -510,12 +528,13 @@
     margin: 28px 0;
   }
 
-  /* ── CRITICAL MOBILE MEDIA OVERRIDES ── */
+  /* ── VIEWPORT SPECIFIC RESPONSIVENESS OVERRIDES ── */
   @media (max-width: 768px) {
-    .mode-command { display: none !important; } /* Strips terminal text on mobile to avoid viewport shifting */
-    .header-inner { padding: 0 4px; gap: 12px; }
-    nav { overflow-x: auto; scrollbar-width: none; } /* Enables clean swiping for tabs if needed */
-    nav::-webkit-scrollbar { display: none; }
+    .mode-command { display: none !important; }
+    .header-inner { padding: 0 12px; gap: 12px; justify-content: space-between; }
+    .logo { font-size: 14px; }
+    .mode-toggle { gap: 4px; }
+    .mode-label { font-size: 10px; min-width: 22px; }
   }
 
   @media (max-width: 640px) {
