@@ -58,8 +58,8 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    height: 56px;
-    gap: 32px;
+    height: 64px; /* Increased slightly for clear target breathing room */
+    gap: 24px;
   }
   .logo {
     font-family: 'JetBrains Mono', monospace;
@@ -71,18 +71,19 @@
   }
   .logo span { color: var(--accent); }
 
-  nav { display: flex; gap: 4px; flex: 1; }
+  nav { display: flex; gap: 4px; }
   .nav-tab {
     font-size: 13px;
     font-weight: 500;
     color: var(--text-muted);
-    padding: 6px 12px;
+    padding: 8px 12px; /* Enhanced vertical sizing for thumb clicks */
     border-radius: 6px;
     cursor: pointer;
     border: none;
     background: none;
     transition: color 0.15s, background 0.15s;
     font-family: 'Inter', sans-serif;
+    white-space: nowrap;
   }
   .nav-tab:hover { color: var(--text); background: var(--border); }
   .nav-tab.active { color: var(--text); background: var(--surface); }
@@ -92,36 +93,40 @@
   body:not(.personal-mode) .pro-nav { display: flex; }
   body.personal-mode .personal-nav { display: flex; }
 
-  /* MODE TOGGLE */
+  /* MODE TOGGLE SYSTEM - UPDATED FOR MOBILE SAFETY */
   .mode-toggle {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-left: auto;
+    flex-shrink: 0;
   }
   .mode-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--text-subtle);
-    letter-spacing: 0.02em;
-    width: 24px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    min-width: 28px;
     text-align: right;
   }
   .toggle-switch {
     position: relative;
-    width: 44px;
-    height: 24px;
+    width: 48px; /* Slightly scaled up for physical interaction paths */
+    height: 26px;
     cursor: pointer;
+    display: inline-block;
   }
   .toggle-switch input { display: none; }
   .toggle-track {
     position: absolute;
     inset: 0;
     background: var(--border-muted);
-    border-radius: 12px;
+    border-radius: 13px;
     transition: background 0.3s;
+    border: 1px solid var(--border);
   }
-  .toggle-switch input:checked + .toggle-track { background: var(--accent); }
+  .toggle-switch input:checked + .toggle-track { background: var(--accent); border-color: transparent; }
   .toggle-thumb {
     position: absolute;
     top: 3px;
@@ -130,12 +135,12 @@
     height: 18px;
     background: #fff;
     border-radius: 50%;
-    transition: transform 0.3s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
   }
-  .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(20px); }
+  .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(22px); }
 
-  /* MODE COMMAND LINE */
+  /* COMPACT CONTAINER DISPLAY FOR CONSOLE STRING */
   .mode-command {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -147,7 +152,7 @@
   .mode-command.visible { opacity: 1; }
 
   /* ── LAYOUT ── */
-  .page { display: none; max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+  .page { display: none; max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
   .page.active { display: block; }
 
   /* ── HERO / README ── */
@@ -186,7 +191,7 @@
     max-width: 480px;
   }
 
-  /* STAT CARDS - STRICT MAX 4 IN A ROW CONTAINER */
+  /* STAT CARDS - GRID PATTERNS */
   .stat-cards-wrapper { display: none; margin-bottom: 32px; }
   body:not(.personal-mode) .pro-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
   body.personal-mode .personal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -209,7 +214,7 @@
   .stat-card .stat-icon { font-size: 18px; margin-bottom: 6px; }
   .stat-card .stat-value {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text);
     display: block;
@@ -292,7 +297,7 @@
   }
   .readme-section li a { font-size: 13px; }
 
-  /* ── PROJECTS PAGE ── */
+  /* ── PROJECTS SYSTEM ── */
   .section-header {
     display: flex;
     align-items: center;
@@ -305,7 +310,6 @@
     font-weight: 600;
   }
 
-  /* FILTER TAGS */
   .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
   .filter-tag {
     background: var(--surface);
@@ -326,7 +330,6 @@
     color: var(--accent);
   }
 
-  /* PROJECT GRID */
   .project-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -384,7 +387,7 @@
   }
   .project-link:hover { color: var(--accent); opacity: 1; }
 
-  /* ── PHOTOGRAPHY PAGE ── */
+  /* ── PHOTOGRAPHY SYSTEM ── */
   .photo-hero {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -435,7 +438,7 @@
   }
   .photo-slot:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* PHILOSOPHY SECTION */
+  /* PHILOSOPHY STYLES */
   .philosophy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
   .belief-card {
     background: var(--surface);
@@ -477,7 +480,7 @@
   .book-author { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
   .book-note { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
 
-  /* NOW SECTION */
+  /* NOW CARD BLOCK */
   .now-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -501,14 +504,20 @@
   .now-item { font-size: 13px; color: var(--text-muted); padding-left: 16px; position: relative; }
   .now-item::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 10px; top: 3px; }
 
-  /* DIVIDER */
   .section-divider {
     border: none;
     border-top: 1px solid var(--border);
     margin: 28px 0;
   }
 
-  /* RESPONSIVE */
+  /* ── CRITICAL MOBILE MEDIA OVERRIDES ── */
+  @media (max-width: 768px) {
+    .mode-command { display: none !important; } /* Strips terminal text on mobile to avoid viewport shifting */
+    .header-inner { padding: 0 4px; gap: 12px; }
+    nav { overflow-x: auto; scrollbar-width: none; } /* Enables clean swiping for tabs if needed */
+    nav::-webkit-scrollbar { display: none; }
+  }
+
   @media (max-width: 640px) {
     body:not(.personal-mode) .pro-stats,
     body.personal-mode .personal-stats { grid-template-columns: repeat(2, 1fr); }
@@ -516,7 +525,7 @@
     .philosophy-grid { grid-template-columns: 1fr; }
     .photo-grid { grid-template-columns: repeat(2, 1fr); }
     .hero { flex-direction: column; gap: 12px; }
-    .header-inner { gap: 16px; }
+    .page-container { padding-top: 24px !important; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -541,8 +550,8 @@
       <!-- PERSONAL NAVIGATION TABS -->
       <div class="personal-nav" id="nav-container-personal">
         <button class="nav-tab" onclick="showPage('personal-about', this)">About Me</button>
-        <button class="nav-tab" onclick="showPage('personal-philosophy', this)">Philosophy & Books</button>
-        <button class="nav-tab" onclick="showPage('personal-photography', this)">Photography</button>
+        <button class="nav-tab" onclick="showPage('personal-philosophy', this)">Philosophy</button>
+        <button class="nav-tab" onclick="showPage('personal-photography', this)">Photos</button>
       </div>
     </nav>
     
@@ -558,7 +567,7 @@
   </div>
 </header>
 
-<!-- ── COMMON SYSTEM HERO (CONTENT ADAPTS VIA CSS MODE) ── -->
+<!-- ── SHARED CONTAINER ── -->
 <div class="page-container" style="max-width: 960px; margin: 0 auto; padding: 40px 24px 0;">
   <div class="hero" style="margin-bottom: 0;">
     <div class="avatar">RK</div>
@@ -571,13 +580,10 @@
   </div>
 </div>
 
-<!-- ── STRUCTURAL MODE SECTIONS ── -->
-
-<!-- ==================== PROFESSIONAL PAGES ==================== -->
+<!-- ==================== PROFESSIONAL INTERFACES ==================== -->
 
 <!-- 1. PRO OVERVIEW PAGE -->
 <div class="page active" id="page-pro-overview">
-  <!-- STAT CARDS (PRO MODE - HORIZONTAL ROW) -->
   <div class="stat-cards-wrapper pro-stats">
     <a class="stat-card" href="https://substack.com" target="_blank" rel="noopener">
       <div class="stat-icon">✍️</div>
@@ -771,11 +777,10 @@
 </div>
 
 
-<!-- ==================== PERSONAL PAGES ==================== -->
+<!-- ==================== PERSONAL INTERFACES ==================== -->
 
 <!-- 1. PERSONAL ABOUT ME -->
 <div class="page" id="page-personal-about">
-  <!-- STAT CARDS (PERSONAL MODE - HORIZONTAL ROW) -->
   <div class="stat-cards-wrapper personal-stats">
     <a class="stat-card" href="https://substack.com" target="_blank" rel="noopener">
       <div class="stat-icon">✍️</div>
@@ -921,27 +926,16 @@
 </div>
 
 <script>
-  // ── PAGE SWITCHING ──
   function showPage(id, btn) {
-    // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // Deactivate all matching navigation tabs across both sets
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     
-    // Show current requested page
     const targetPage = document.getElementById('page-' + id);
     if (targetPage) targetPage.classList.add('active');
     
-    // Handle tab focus state
-    if (btn) {
-      btn.classList.add('active');
-    } else {
-      // Logic for fallbacks when switching core modes via standard toggles
-      const activeTab = document.querySelector(`.page.active`);
-    }
+    if (btn) btn.classList.add('active');
   }
 
-  // ── MODE TOGGLE ──
   const modeCmd = document.getElementById('modeCmd');
   const modeLabel = document.getElementById('modeLabel');
 
@@ -952,7 +946,6 @@
     modeCmd.textContent = isPersonal ? '$ mode --personal' : '$ mode --professional';
     modeCmd.classList.add('visible');
     
-    // Automatically swap page focus state safely to match the current interface scope
     if (isPersonal) {
       const personalTabs = document.getElementById('nav-container-personal').querySelectorAll('.nav-tab');
       personalTabs.forEach(t => t.classList.remove('active'));
@@ -967,7 +960,6 @@
     modeCmd._timer = setTimeout(() => modeCmd.classList.remove('visible'), 1800);
   }
 
-  // ── PROJECT FILTER ──
   function filterProjects(tag, btn) {
     document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
     btn.classList.add('active');
